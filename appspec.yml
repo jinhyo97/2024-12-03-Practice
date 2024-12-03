@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+files:
+    - source: /
+      destination: /home/ubuntu/2024-12-03-Practice
+    - source: /.env
+      destination: /home/ubuntu/2024-12-03-Practice
+file_exists_behavior: OVERWRITE
+
+permissions:
+    - object: /home/ubuntu/2024-12-03-Practice
+      pattern: '**'
+      owner: root
+      group: root
+
+hooks:
+    AfterInstall:
+        - location: scripts/after_deploy.sh
+	          timeout: 100000  # 100초
+          runas: root
